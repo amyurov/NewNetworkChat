@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <File name="LogToClientFile" fileName="logs/client_logback.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="LogToServerFile" fileName="logs/server_logback.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <!-- avoid duplicated logs with additivity=false -->
+        <Logger name="org.example.client.Client" level="debug" additivity="false">
+            <AppenderRef ref="LogToClientFile"/>
+        </Logger>
+        <Logger name="org.example.server" level="debug" additivity="false">
+            <AppenderRef ref="LogToServerFile"/>
+        </Logger>
+
+        <Root level="error">
+            <AppenderRef ref="LogToFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
